@@ -1,15 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import type { ErrorRequestHandler } from 'express';
 
-const error = (
-  err: any,
-  _req: Request,
-  res: Response,
-  _next: NextFunction,
+const error: ErrorRequestHandler = (
+  err,
+  _req,
+  res,
+  _next,
 ) => {
-  // console.log(err.details);
-  // console.log(err.details[0].message);
-  // console.log(err.details[0].path[0]);
-  // console.log(`${err.details[0].path[0]} is required`);
   if (err.details[0].message === `"${err.details[0].path[0]}" is required`) {
     return res.status(400).json({ message: err.message });
   }

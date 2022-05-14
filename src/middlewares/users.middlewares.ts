@@ -8,11 +8,11 @@ const userSchema = Joi.object().keys({
   password: Joi.string().min(8).required(),
 });
 
-const isValidProduct = (req: Request, _res: Response, next: NextFunction) => {
+const validUser = (req: Request, _res: Response, next: NextFunction) => {
   const { error } = userSchema.validate(req.body);
   if (error) throw error;
 
   next();
 };
 
-export default isValidProduct;
+export default validUser;

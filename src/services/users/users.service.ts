@@ -12,10 +12,12 @@ class UsersService {
 
   public async create(user: IUsers): Promise<string> {
     await this.model.create(user);
+
     const token = jwt.sign({}, 'ARE SECRET', {
       expiresIn: '1d',
       subject: `${user.username}`,
     });
+
     return token;
   }
 }

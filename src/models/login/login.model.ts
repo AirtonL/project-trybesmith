@@ -3,7 +3,7 @@ import IUserBody from '../../interfaces/users/user.login.body.interface';
 import IUser from '../../interfaces/users/users.interface';
 
 class UserModel {
-  public connection: Pool;
+  private connection: Pool;
 
   constructor(connection: Pool) {
     this.connection = connection;

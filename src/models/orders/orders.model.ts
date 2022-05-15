@@ -4,7 +4,7 @@ import IOrdersCreateReturn from '../../interfaces/orders/orders.create.return.in
 import IOrder from '../../interfaces/orders/orders.interface';
 
 class OrderModel {
-  public connection: Pool;
+  private connection: Pool;
 
   constructor(connection: Pool) {
     this.connection = connection;

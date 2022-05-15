@@ -6,10 +6,10 @@ import productsMiddlewares from '../middlewares/products.middlewares';
 
 const productsController = new ProductsController();
 
-const routerProducts = Router();
+const routerProducts: Router = Router();
 
-routerProducts.get('/products', productsController.getAll);
+routerProducts.get('/', productsController.getAll);
 
-routerProducts.post('/products', productsMiddlewares, productsController.create);
+routerProducts.post('/', productsMiddlewares, productsController.create);
 
 export default routerProducts;

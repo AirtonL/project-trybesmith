@@ -14,20 +14,16 @@ class OrdersServices {
   public async getAll(): Promise<IServiceOrder[]> {
     const orders = await this.model.getAll();
 
-    const result = orders
+    return orders
       .map(({ id, userId, products }) => ({
         id,
         userId,
         productsIds: Array.from(products).map(Number),
       }));
-
-    return result;
   }
 
   public async create({ userId, productsIds }: IOrdersCreate): Promise<IOrdersCreateReturn> {
-    const ordersCreate = await this.model.create({ userId, productsIds });
-
-    return ordersCreate;
+    return this.model.create({ userId, productsIds });
   }
 }
 

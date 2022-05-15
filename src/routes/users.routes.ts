@@ -6,8 +6,8 @@ import userMiddleware from '../middlewares/users.middlewares';
 
 const usersController = new UsersController();
 
-const routerUser = Router();
+const routerUser: Router = Router();
 
-routerUser.post('/users', userMiddleware, usersController.create);
+routerUser.post('/', userMiddleware, usersController.create);
 
 export default routerUser;

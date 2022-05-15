@@ -4,14 +4,14 @@ import routerUser from './users.routes';
 import routerOrders from './orders.routes';
 import routerLogin from './users.login.routes';
 
-const router = Router();
+const router: Router = Router();
 
-router.use(routerProducts);
+router.use('/products', routerProducts);
 
-router.use(routerUser);
+router.use('/users', routerUser);
 
-router.use(routerOrders);
+router.use('/orders', routerOrders);
 
-router.use(routerLogin);
+router.use('/login', routerLogin);
 
 export default router;

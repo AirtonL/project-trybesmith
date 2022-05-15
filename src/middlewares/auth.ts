@@ -1,11 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
-interface Ipayload {
-  data: {
-    id: number;
-  };
-}
+import IPayload from '../interfaces/jwt/payload';
 
 const verify = (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
@@ -17,7 +12,7 @@ const verify = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const { data } = jwt.verify(token, 'ARE SECRET') as Ipayload;
+    const { data } = jwt.verify(token, 'ARE SECRET') as IPayload;
     req.userId = data.id;
     next();
   } catch (err) {

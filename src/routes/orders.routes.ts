@@ -6,10 +6,10 @@ import validOrders from '../middlewares/orders.create.middlewares';
 
 const ordersController = new OrdersController();
 
-const routerOrders = Router();
+const routerOrders: Router = Router();
 
-routerOrders.get('/orders', ordersController.getAll);
+routerOrders.get('/', ordersController.getAll);
 
-routerOrders.post('/orders', verify, validOrders, ordersController.create);
+routerOrders.post('/', verify, validOrders, ordersController.create);
 
 export default routerOrders;

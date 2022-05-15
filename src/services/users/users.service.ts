@@ -11,13 +11,12 @@ class UsersService {
   }
 
   public async create(user: IUsers): Promise<string> {
-    await this.model.create(user);
+    const id = await this.model.create(user);
 
-    const token = jwt.sign({}, 'ARE SECRET', {
+    const token = jwt.sign({ data: { id, username: user.username } }, 'ARE SECRET', {
       expiresIn: '1d',
-      subject: `${user.username}`,
+      algorithm: 'HS256',
     });
-
     return token;
   }
 }

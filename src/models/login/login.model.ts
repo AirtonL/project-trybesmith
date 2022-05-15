@@ -1,6 +1,6 @@
 import { Pool } from 'mysql2/promise';
-import IUserBody from '../../interfaces/user.login.body.interface';
-import IUser from '../../interfaces/users.interface';
+import IUserBody from '../../interfaces/users/user.login.body.interface';
+import IUser from '../../interfaces/users/users.interface';
 
 class UserModel {
   public connection: Pool;

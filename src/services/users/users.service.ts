@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import connection from '../../models/connection';
 import UsersModel from '../../models/users/users.model';
-import IUsers from '../../interfaces/users.interface';
+import IUsers from '../../interfaces/users/users.interface';
 
 class UsersService {
   public model: UsersModel;

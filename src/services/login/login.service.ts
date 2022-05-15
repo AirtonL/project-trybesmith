@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import IUserBody from '../../interfaces/user.login.body.interface';
+import IUserBody from '../../interfaces/users/user.login.body.interface';
 import connection from '../../models/connection';
 import LoginModel from '../../models/login/login.model';
 

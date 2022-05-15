@@ -13,6 +13,18 @@ class OrdersController {
       next(error);
     }
   };
+
+  public create = async (req: Request, res: Response, next: NextFunction) => {
+    const { productsIds } = req.body;
+    const { userId } = req;
+    try {
+      const orderCreate = await this.ordersService.create({ userId, productsIds });
+
+      return res.status(201).json(orderCreate);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default OrdersController;

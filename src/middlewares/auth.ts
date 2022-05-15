@@ -20,7 +20,7 @@ const verify = (req: Request, res: Response, next: NextFunction) => {
     const { data } = jwt.verify(token, 'ARE SECRET') as Ipayload;
     req.userId = data.id;
     next();
-  } catch (err: any) {
+  } catch (err) {
     return res.status(401).json({
       message: 'Invalid token',
     });

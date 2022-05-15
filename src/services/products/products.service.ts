@@ -1,5 +1,6 @@
 import connection from '../../models/connection';
 import ProductsModel from '../../models/products/products.model';
+
 import IProducts from '../../interfaces/products/products.interface';
 
 class ProductsService {
@@ -10,13 +11,11 @@ class ProductsService {
   }
 
   public async getAll(): Promise<IProducts[]> {
-    const products = await this.model.getAll();
-    return products;
+    return this.model.getAll();
   }
 
   public async create(products: IProducts): Promise<IProducts> {
-    const result = await this.model.create(products);
-    return result;
+    return this.model.create(products);
   }
 }
 

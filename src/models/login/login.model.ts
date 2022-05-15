@@ -1,4 +1,5 @@
 import { Pool } from 'mysql2/promise';
+
 import IUserBody from '../../interfaces/users/user.login.body.interface';
 import IUser from '../../interfaces/users/users.interface';
 
@@ -18,6 +19,7 @@ class UserModel {
     );
 
     const [rows] = user as IUser[];
+
     return rows;
   }
 }

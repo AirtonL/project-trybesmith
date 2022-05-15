@@ -1,12 +1,10 @@
 import jwt from 'jsonwebtoken';
-import IUserBody from '../../interfaces/users/user.login.body.interface';
+
 import connection from '../../models/connection';
 import LoginModel from '../../models/login/login.model';
 
-interface IUserLogin {
-  message: string | undefined;
-  token: string | undefined;
-}
+import IUserBody from '../../interfaces/users/user.login.body.interface';
+import IUserLogin from '../../interfaces/users/user.login.service.interface';
 
 class LoginService {
   public model: LoginModel;

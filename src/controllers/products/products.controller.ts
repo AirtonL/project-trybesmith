@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+
 import ProductsService from '../../services/products/products.service';
 
 class ProductsController {

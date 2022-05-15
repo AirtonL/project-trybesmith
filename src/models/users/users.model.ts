@@ -1,4 +1,5 @@
 import { ResultSetHeader, Pool } from 'mysql2/promise';
+
 import IUser from '../../interfaces/users/users.interface';
 
 class UserModel {

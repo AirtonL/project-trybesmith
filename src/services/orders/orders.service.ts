@@ -12,13 +12,12 @@ class OrdersServices {
   public async getAll(): Promise<IServiceOrder[]> {
     const orders = await this.model.getAll();
 
-    const result = orders.map(({ id, userId, products }) => {
-      const productsIds = products.split(',')
-        .map((product: string) => Number(product));
-      // const teste = new Array(...productsIds);
-      return { id, userId, productsIds };
-    });
-    console.log(result);
+    const result = orders
+      .map(({ id, userId, products }) => ({
+        id,
+        userId,
+        productsIds: Array.from(products).map(Number),
+      }));
 
     return result;
   }

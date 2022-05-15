@@ -8,14 +8,16 @@ class UserModel {
     this.connection = connection;
   }
 
-  public async create(user: IUser): Promise<void> {
+  public async create(user: IUser): Promise<number> {
     const { username, classe, level, password } = user;
 
-    await this.connection.execute<ResultSetHeader>(
+    const [dataInserted] = await this.connection.execute<ResultSetHeader>(
       `INSERT INTO Trybesmith.Users
     (username, classe, level, password ) VALUES (?, ?, ?, ?)`,
       [username, classe, level, password],
     );
+    const { insertId } = dataInserted;
+    return insertId;
   }
 }
 

@@ -1,14 +1,25 @@
 import express from 'express';
 import 'dotenv/config';
-import router from './routes';
+import routes from './routes';
 import error from './middlewares/error';
 
-const app = express();
+class App {
+  public express: express.Application;
 
-app.use(express.json());
+  constructor() {
+    this.express = express();
+    this.middleware();
+    this.routes();
+  }
 
-app.use(router);
+  private middleware(): void {
+    this.express.use(express.json());
+  }
 
-app.use(error);
+  private routes(): void {
+    this.express.use(routes);
+    this.express.use(error);
+  }
+}
 
-export default app;
+export default new App().express;

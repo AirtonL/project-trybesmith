@@ -12,12 +12,12 @@ class OrderModel {
   }
 
   public async getAll(): Promise<IOrder[]> {
-  // https://stackoverflow.com/questions/2516545/mysql-group-concat  
+  // https://dev.mysql.com/doc/refman/5.7/en/aggregate-functions.html#function_json-arrayagg
     const [result] = await this.connection.execute(`
     SELECT 
       Orders.id,
       Orders.userId,
-      GROUP_CONCAT(p.id) AS products
+      JSON_ARRAYAGG(p.id) AS productsIds
     FROM Trybesmith.Orders
       INNER JOIN Trybesmith.Products AS p
       ON FIND_IN_SET(Orders.id, p.orderId)
@@ -28,17 +28,17 @@ class OrderModel {
   }
 
   public async create({ userId, productsIds }: IOrdersCreate): Promise<IOrdersCreateReturn> {
-    const [{ insertId: id }] = await this.connection.execute<ResultSetHeader>(
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
       [userId],
     );
     
     await this.connection.execute(
       'UPDATE Trybesmith.Products SET orderId=? WHERE id=?',
-      [id, id + 1],
+      [insertId, insertId + 1],
     );
 
-    return { id, userId, productsIds };
+    return { userId, productsIds };
   }
 }
 

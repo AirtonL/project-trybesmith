@@ -1,7 +1,7 @@
 import connection from '../../models/connection';
 import OrdersModel from '../../models/orders/orders.model';
 
-import IServiceOrder from '../../interfaces/orders/ordersService.interface';
+import IOrder from '../../interfaces/orders/orders.interface';
 import IOrdersCreate from '../../interfaces/orders/orders.create.interface';
 import IOrdersCreateReturn from '../../interfaces/orders/orders.create.return.interface';
 
@@ -12,15 +12,8 @@ class OrdersServices {
     this.model = new OrdersModel(connection);
   }
 
-  public async getAll(): Promise<IServiceOrder[]> {
-    const orders = await this.model.getAll();
-
-    return orders
-      .map(({ id, userId, products }) => ({
-        id,
-        userId,
-        productsIds: Array.from(products).map(Number),
-      }));
+  public async getAll(): Promise<IOrder[]> {
+    return this.model.getAll();
   }
 
   public async create({ userId, productsIds }: IOrdersCreate): Promise<IOrdersCreateReturn> {
